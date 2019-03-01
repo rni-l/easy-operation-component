@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+
+/* 
+ *************************************  原子类 *******************************************
+ */
+.f-clearfix {
+  @include f-clearfix;
+}
+.f-flex {
+  @include f-flex;
+}
+.f-levelCenter {
+  @include f-levelCenter;
+}
+.f-verticalCenter {
+  @include f-verticalCenter;
+}
+.f-center {
+  @include f-center;
+}
+.f-flexWrap {
+  @include f-flexWrap;
+}
+.f-flex-jc-sb {
+  @include f-flex-jc-sb;
+}
+.f-flex-jc-sa {
+  @include f-flex-jc-sa;
+}
+.f-flex-ac-center {
+  @include f-flex-ac-center;
+}
+.f-flex-ai-start {
+  @include f-flex-ai-start;
+}
+.f-flex-ai-end {
+  @include f-flex-ai-end;
+}
+.f-flexOne {
+  @include f-flexOne;
+}
+.f-fixed {
+  @include f-fixed;
+}
+.f-txtHide {
+  @include f-txtHide;
+}
+
+.u-container {
+  @include u-container;
+}
+
+.u-btn {
+  @include u-btn;
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.slide-down-enter-active, .slide-down-leave-active {
+  transition: all .3s;
+}
+
+.slide-down-enter, .slide-down-leave-to {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.slide-down-enter-to, .slide-down-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 
+  *************************************  原子类 *******************************************
+  */
+.c-primary {
+  color: $c-primary;
+}
+.c-prompt {
+  color: $c-prompt;
+}
+
+// 布局
+.f-container_tabbar {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: $footerH;
+}
+
+.f-pr {
+  position: relative;
+}
+.f-pa {
+  position: absolute;
+}
+.f-pf {
+  position: fixed;
+  -webkit-transform: translateZ(0);
+}
+.f-clearfix {
+  &::after {
+    content: '';
+    clear: both;
+    display: block;
+    height: 0;
+    font-size: 0;
+  }
+}
+.f-flex {
+  display: flex;
+}
+.f-levelCenter {
+  display: flex;
+  justify-content: center;
+}
+.f-verticalCenter {
+  display: flex;
+  align-items: center;
+}
+.f-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.f-flexWrap {
+  flex-wrap: wrap;
+}
+.f-flex-jc-sb {
+  justify-content: space-between;
+}
+.f-flex-jc-sa {
+  justify-content: space-around;
+}
+.f-flex-ac-center {
+  align-content: center;
+}
+.f-flex-ai-start {
+  align-items: flex-start;
+}
+.f-flex-ai-end {
+  align-items: flex-end;
+}
+.f-flexOne {
+  flex: 1;
+}
+
+// 固定
+.f-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  // 防止抖动
+  -webkit-transform: translateZ(0);
+}
+.f-txtHide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.f-noData {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-size: 14px;
+}
+
+.f-content {
+  padding: 20px;
+  line-height: 1.5;
+  &_title {
+    padding-top: 20px;
+    font-size: 16px;
+    color: $c-title;
+    text-align: center;
+  }
+}
+
+/* 
+  *************************************  公共组件 *******************************************
+  */
+

@@ -1,0 +1,233 @@
+/* 
+ ************************************* 变量 *******************************************
+ */
+  // 组件、布局的宽高
+  $content_w: 1190px;
+  $header_h: 64px;
+  $footerH: 50px;
+
+  // color
+  $c-primary: rgb(74, 181, 245);
+  $c-title: #333333;
+  $c-subtitle: #666666;
+  $c-desc: #999999;
+  $c-price: #feb613;
+  $c-prompt: #e5222c;
+  $c-border: #dedede;
+  $c-hoverBg: rgb(246, 246, 246);
+
+  $c-headerBg: rgb(246, 246, 246);
+  $c-headerColor: #fff;
+
+  $fs-title: 16px;
+  $fs-subtitle: 14px;
+  $fs-desc: 12px;
+  $fs-default: 12px;
+
+  $pc-main-width: 260px;
+  $pc-main-content-height: 370px;
+
+  $title-maxW: 130px;
+
+  $contactTab_width: 28px;
+
+  $pd: 10px;
+
+  $boxShadow: 1px 1px 50px rgba(0,0,0,.3);
+
+  // dialog
+  $dialogW: 600px;
+  $dialog_headerH: 20px;
+  $dialog_big_headerH: 40px;
+  // dialog-contact
+  $contactDialogH: 500px;
+  // $dialog_contentH: 280px;
+  $contactDialog_sendH: 156px;
+  $dialog_asideW: 200px;
+  $dialog_asideBg: #fff;
+
+  $contact_item_bg: rgb(246, 246, 246);
+
+  // record-card
+  $record_card_lp: 10px;
+  $record_card_avatarW: 30px;
+  $record_card_rightW: 25px;
+  $record_card_tp: 8px;
+  $record_card_closeBtnLeft: 5px;
+  $record_card_number_grey: #9d9d9d;
+
+  // notify-dialog
+  $notify_dialog_contentH: 450px;
+
+  // font-family
+  $fa-medium: PingFangSC-Medium;
+  $fa-semibold: PingFangSC-Semibold;
+  $fa-regular: PingFangSC-Regular;
+
+  // mixins
+  @mixin f-backgroundCover($imgUrl) {
+    background-image: url($imgUrl);
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  @mixin f-backgroundContain($imgUrl) {
+    background-image: url($imgUrl);
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+/* 
+ *************************************  原子类 *******************************************
+ */
+  // 定义一个变量，防止每个单页面文件都重复引入
+  @mixin f-clearfix() {
+    &::after {
+      content: '';
+      clear: both;
+      display: block;
+      height: 0;
+      font-size: 0;
+    }
+  }
+  @mixin f-flex() {
+    display: flex;
+  }
+  @mixin f-levelCenter() {
+    display: flex;
+    justify-content: center;
+  }
+  @mixin f-verticalCenter() {
+    display: flex;
+    align-items: center;
+  }
+  @mixin f-center() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @mixin f-flexWrap() {
+    flex-wrap: wrap;
+  }
+  @mixin f-flex-jc-sb() {
+    justify-content: space-between;
+  }
+  @mixin f-flex-jc-sa() {
+    justify-content: space-around;
+  }
+  @mixin f-flex-ac-center() {
+    align-content: center;
+  }
+  @mixin f-flex-ai-start() {
+    align-items: flex-start;
+  }
+  @mixin f-flex-ai-end() {
+    align-items: flex-end;
+  }
+  @mixin f-flexOne() {
+    flex: 1;
+  }
+
+  // 固定
+  @mixin f-fixed() {
+    position: fixed;
+    // 防止抖动
+    // -webkit-transform: translateZ(0);
+  }
+  @mixin f-dir-tl() {
+    top: 0;
+    left: 0;
+  }
+  @mixin f-dir-tr() {
+    top: 0;
+    right: 0;
+  }
+  @mixin f-dir-br() {
+    right: 0;
+    bottom: 0;
+  }
+  @mixin f-dir-bl() {
+    left: 0;
+    bottom: 0;
+  }
+
+  // 单行文字隐藏
+  @mixin f-txtHide() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  // 绝对定义居中
+  @mixin f-absoluteCenter() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @mixin f-absoluteVerticalCenter() {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @mixin f-absoluteColumnCenter() {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @mixin f-fixedCenter() {
+    @include f-fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+/* 
+ ************************************* 组件类 *******************************************
+ */
+  @mixin u-container() {
+    width: 100%;
+    &_wrap {
+      width: $content_w;
+      margin: 0 auto;
+    }
+  }
+
+  @mixin u-btn($w: 100%, $h: 49px, $cT: $c-primary, $cBg: #fff, $cb: $c-primary) {
+    width: $w;
+    height: $h;
+    background: $cBg;
+    font-size: 18px;
+    color: $cT;
+    @include f-center;
+    // border: 1px solid $cb;
+    // border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all .2s;
+    // &:hover {
+    //   color: $cBg;
+    //   background: $cT;
+    // }
+    &.radius {
+      border-radius: 20px;
+    }
+    &.primary {
+      color: $cBg;
+      background: $cT;
+      // &:hover {
+      //   background: $cBg;
+      //   color: $cT;
+      // }
+    }
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+
+
