@@ -30,6 +30,31 @@
     <wrap-demo title='cascader'>
       <u-cascader :options='cascaderOption' :data='cascaderList' @change='change' />
     </wrap-demo>
+
+    <wrap-demo title='switch'>
+      <h3>普通用法</h3>
+      <u-switch :options='switchOption' @change='change' />
+      <h3>判断限制，通过</h3>
+      <u-switch :options='switchOption1' @change='change' />
+      <h3>判断限制，拒绝</h3>
+      <u-switch :options='switchOption2' @change='change' />
+    </wrap-demo>
+
+    <wrap-demo title='slider'>
+      <u-slider :options='sliderOption' @change='change' />
+    </wrap-demo>
+
+    <wrap-demo title='rate'>
+      <u-rate :options='rateOption' @change='change' />
+    </wrap-demo>
+
+    <wrap-demo title='colorPicker'>
+      <u-color-picker :options='colorPickerOption' @change='change' />
+    </wrap-demo>
+
+    <wrap-demo title='transfer'>
+      <u-transfer :options='transferOption' :data='transferData' @change='change' />
+    </wrap-demo>
   </div>
 </template>
 
@@ -42,7 +67,12 @@ import URadio from '@/components/element-ui/Radio'
 import UCheckbox from '@/components/element-ui/Checkbox'
 import UDate from '@/components/element-ui/Date'
 import UCascader from '@/components/element-ui/Cascader'
-import { listData, cascaderList } from '@/mock/listData'
+import USwitch from '@/components/element-ui/Switch'
+import USlider from '@/components/element-ui/Slider'
+import URate from '@/components/element-ui/Rate'
+import UColorPicker from '@/components/element-ui/ColorPicker'
+import UTransfer from '@/components/element-ui/Transfer'
+import { listData, cascaderList, transferData } from '@/mock/listData'
 import { ReturnCommonData } from '@/types/common'
 
 @Component({
@@ -53,7 +83,12 @@ import { ReturnCommonData } from '@/types/common'
     UCheckbox,
     UInputNumber,
     UDate,
-    UCascader
+    UCascader,
+    USwitch,
+    USlider,
+    URate,
+    UColorPicker,
+    UTransfer
   }
 })
 export default class Home extends Vue {
@@ -98,6 +133,32 @@ export default class Home extends Vue {
     defaultValue: [cascaderList[0].value],
     changeOnSelect: true
   }
+  switchOption = {
+    defaultValue: false
+  }
+  switchOption1 = {
+    defaultValue: false,
+    checkIfSwitch: this.checkIfSwitch
+  }
+  switchOption2 = {
+    defaultValue: false,
+    checkIfSwitch: this.checkIfSwitch1
+  }
+  sliderOption = {
+    defaultValue: 20,
+    min: 0,
+    max: 100
+  }
+  rateOption = {
+    defaultValue: 1
+  }
+  colorPickerOption = {
+    defaultValue: 'red'
+  }
+  transferData = transferData
+  transferOption = {
+    defaultValue: [transferData[0].value]
+  }
 
   mounted() {
   }
@@ -108,6 +169,14 @@ export default class Home extends Vue {
 
   blur() {
     console.log('blur')
+  }
+
+  checkIfSwitch() {
+    return Promise.resolve()
+  }
+
+  checkIfSwitch1() {
+    return Promise.reject(new Error())
   }
 }
 </script>

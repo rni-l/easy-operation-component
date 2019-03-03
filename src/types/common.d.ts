@@ -1,6 +1,7 @@
 export interface CommonData {
   value: any
   label: [Number, String]
+  key?: any,
   children?: CommonData[]
 }
 
@@ -16,3 +17,8 @@ export type inputValue = any
 export type inputNumberValue = Number
 export type dateComponentValue = Number | String | [Number | String | undefined]
 export type cascaderValue = any[]
+export type switchValue = Boolean
+export type sliderValue = Number
+export type rateValue = Number
+export type colorPickerValue = String
+export type transferValue = any[]

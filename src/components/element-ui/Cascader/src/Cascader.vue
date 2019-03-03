@@ -14,7 +14,7 @@ import formMixin from '@/mixins/form'
 @Component({
   components: {}
 })
-export default class Select extends Mixins(formMixin) {
+export default class CascaderCom extends Mixins(formMixin) {
   @Prop({ default: [] }) data?: CommonData[]
   @Prop() options!: easyCascaderOptions
 

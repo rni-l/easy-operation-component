@@ -13,6 +13,8 @@ declare module '*.jpg' {
   export default value
 }
 
+declare module 'easy-validate-form'
+
 declare namespace utils {
   interface requestHanldeType {
     errType: String

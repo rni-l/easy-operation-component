@@ -22,3 +22,11 @@ export const cascaderList: CommonData[] = Array.from({ length: 3 }).map(v =>
     )
   })
 )
+
+export const transferData: CommonData[] = Array.from({ length: 10 }).map(v =>
+  Mock.mock({
+    label: Mock.mock('@title'),
+    value: Random.id(),
+    key: Random.id()
+  })
+)

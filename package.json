@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "easy-eventbus": "^0.2.9",
+    "easy-validate-form": "^0.0.6",
     "element-ui": "^2.5.4",
     "moment": "^2.24.0",
     "vant": "^1.6.7",
