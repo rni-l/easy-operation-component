@@ -29,7 +29,7 @@
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { easyDateOptions } from '@/types/form'
-import { dateComponentValue } from '@/types/common'
+import { dateComponentValue, eventCallbackValue } from '@/types/common'
 import { componentConfig } from '@/config/common'
 import formMixin from '@/mixins/form'
 
@@ -47,12 +47,19 @@ export default class DateCom extends Mixins(formMixin) {
   }
 
   @Emit()
-  change(): dateComponentValue {
-    return this.value
+  change(): eventCallbackValue {
+    const value = this.getValue()
+    this.options.handleChange && this.options.handleChange(value)
+    return { value, prop: this.prop || '' }
   }
 
   setValue(value: dateComponentValue) {
     this.value = value
+    this.change()
+  }
+
+  getValue(): dateComponentValue {
+    return this.value
   }
 }
 </script>

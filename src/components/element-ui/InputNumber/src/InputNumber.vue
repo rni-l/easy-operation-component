@@ -3,14 +3,13 @@
     :size="options.size || mixinConfig.componentSize"
     @focus='focus'
     @blur='blur'
-    @clear='clear'
     @change='change' />
 </template>
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { easyInputNumberOptions } from '@/types/form'
-import { inputNumberValue } from '@/types/common'
+import { inputNumberValue, eventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -23,20 +22,20 @@ export default class InputNumber extends Mixins(formMixin) {
   value: inputNumberValue = this.options.defaultValue || 0
 
   @Emit()
-  change() {
-    return this.getValue()
+  change(): eventCallbackValue {
+    const value = this.getValue()
+    this.options.handleChange && this.options.handleChange(value)
+    return { value, prop: this.prop || '' }
   }
 
   @Emit()
   focus() {
+    this.options.handleFocus && this.options.handleFocus()
   }
 
   @Emit()
   blur() {
-  }
-
-  @Emit()
-  clear() {
+    this.options.handleBlur && this.options.handleBlur()
   }
 
   getValue() {
@@ -45,6 +44,7 @@ export default class InputNumber extends Mixins(formMixin) {
 
   setValue(value: inputNumberValue) {
     this.value = value
+    this.change()
   }
 }
 </script>

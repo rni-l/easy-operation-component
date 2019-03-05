@@ -17,7 +17,7 @@
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { easyTransferOptions } from '@/types/form'
-import { transferValue, CommonData } from '@/types/common'
+import { transferValue, CommonData, eventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -30,8 +30,20 @@ export default class Transfer extends Mixins(formMixin) {
   value: transferValue = this.options.defaultValue || []
 
   @Emit()
-  change() {
-    return this.getValue()
+  change(): eventCallbackValue {
+    const value = this.getValue()
+    this.options.handleChange && this.options.handleChange(value)
+    return { value, prop: this.prop || '' }
+  }
+
+  @Emit()
+  leftCheckChange() {
+    this.options.handleLeftCheckChange && this.options.handleLeftCheckChange()
+  }
+
+  @Emit()
+  rightCheckChange() {
+    this.options.handleRightCheckChange && this.options.handleRightCheckChange()
   }
 
   getValue() {
@@ -40,11 +52,8 @@ export default class Transfer extends Mixins(formMixin) {
 
   setValue(value: transferValue) {
     this.value = value
+    this.change()
   }
-
-  leftCheckChange() {}
-
-  rightCheckChange() {}
 }
 </script>
 

@@ -7,7 +7,7 @@
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { easySliderOptions } from '@/types/form'
-import { sliderValue } from '@/types/common'
+import { sliderValue, eventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -21,7 +21,9 @@ export default class SliderCom extends Mixins(formMixin) {
 
   @Emit()
   change() {
-    return this.getValue()
+    const value = this.getValue()
+    this.options.handleChange && this.options.handleChange(value)
+    return { value, prop: this.prop || '' }
   }
 
   getValue() {
@@ -30,6 +32,7 @@ export default class SliderCom extends Mixins(formMixin) {
 
   setValue(value: sliderValue) {
     this.value = value
+    this.change()
   }
 }
 </script>

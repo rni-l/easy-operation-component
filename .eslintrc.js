@@ -8,6 +8,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'space-before-function-paren': 'off',
+    'prefer-promise-reject-errors': 'off',
     camelcase: 'off'
   },
   parserOptions: {

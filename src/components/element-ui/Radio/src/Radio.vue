@@ -10,7 +10,7 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { CommonData, ReturnCommonData, radioValue } from '@/types/common'
+import { CommonData, ReturnCommonData, radioValue, eventCallbackValue } from '@/types/common'
 import { easyRadioOptions } from '@/types/form'
 import formMixin from '@/mixins/form'
 
@@ -24,8 +24,10 @@ export default class Radio extends Mixins(formMixin) {
   value: radioValue = this.options.defaultValue
 
   @Emit()
-  change(): ReturnCommonData {
-    return this.getValue()
+  change(): eventCallbackValue {
+    const value = this.getValue()
+    this.options.handleChange && this.options.handleChange(value)
+    return { value, prop: this.prop || '' }
   }
 
   getObjByValue(value: CommonData['value']): CommonData | undefined {
@@ -41,6 +43,7 @@ export default class Radio extends Mixins(formMixin) {
 
   setValue(value: radioValue) {
     this.value = value
+    this.change()
   }
 }
 </script>

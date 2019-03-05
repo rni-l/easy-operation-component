@@ -1,0 +1,116 @@
+<template>
+  <div class='m_form'>
+    <u-form :options='options1' @change='change' ref='form'></u-form>
+    <el-button @click='set'>设置</el-button>
+  </div>
+</template>
+
+<script lang='ts'>
+import { Component, Vue } from 'vue-property-decorator'
+import UForm from '@/components/Form'
+import { listData } from '@/mock/listData'
+import { easyFormOptions } from '@/types/form'
+import { easyFormValue } from '@/types/common'
+
+@Component({
+  components: {
+    UForm
+  }
+})
+export default class FormCom extends Vue {
+  options1: easyFormOptions = {
+    inline: false,
+    labelPosition: 'left',
+    labelWidth: '120px',
+    labelSuffix: '',
+    hideRequired: false,
+    showMessage: true,
+    inlineMessage: false,
+    statusIcon: false,
+    validateOnRuleChange: true,
+    disabled: false,
+    columns: [
+      {
+        prop: 'test',
+        label: 'input',
+        type: 'input',
+        required: true,
+        rules: [
+          { type: 'string', required: true, message: '请输入内容', trigger: 'change' }
+        ],
+        options: {
+          handleInput: this.inputChange,
+          type: 'text',
+          defaultValue: 11
+        }
+      },
+      {
+        prop: 'test1',
+        label: 'input number',
+        type: 'inputNumber',
+        required: true,
+        rules: [
+          { type: 'number', required: true, message: '请输入内容', trigger: 'change' }
+        ],
+        options: {
+          handleInput: this.inputChange,
+          type: 'number',
+          min: 10,
+          max: 50,
+          defaultValue: 11
+        }
+      },
+      {
+        prop: 'test2',
+        label: 'select',
+        type: 'select',
+        required: true,
+        rules: [],
+        data: listData,
+        options: {
+          defaultValue: listData[0].value
+        }
+      },
+      {
+        prop: 'test3',
+        label: 'radio',
+        type: 'radio',
+        required: true,
+        rules: [],
+        data: listData,
+        options: {
+          defaultValue: listData[0].value
+        }
+      },
+      {
+        prop: 'test4',
+        label: 'checkbox',
+        type: 'checkbox',
+        required: true,
+        rules: [],
+        data: listData,
+        options: {
+          defaultValue: []
+        }
+      }
+    ]
+  }
+
+  inputChange(value: any) {
+    console.log('input:', value)
+  }
+
+  change({ data }: any) {
+    console.log(data)
+  }
+
+  set() {
+    const form: any = this.$refs['form']
+    form.setValue({ prop: 'test', value: 'hah' })
+  }
+}
+</script>
+
+<style lang='scss'>
+.m_form {}
+</style>

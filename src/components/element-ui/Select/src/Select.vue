@@ -11,7 +11,7 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { CommonData, ReturnCommonData, selectValue } from '@/types/common'
+import { CommonData, ReturnCommonData, selectValue, eventCallbackValue } from '@/types/common'
 import { easySelectOptions } from '@/types/form'
 import formMixin from '@/mixins/form'
 
@@ -25,8 +25,10 @@ export default class Select extends Mixins(formMixin) {
   value: selectValue = this.options.defaultValue || ''
 
   @Emit()
-  change(): ReturnCommonData {
-    return this.getValue()
+  change(): eventCallbackValue {
+    const value = this.getValue()
+    this.options.handleChange && this.options.handleChange(value)
+    return { value, prop: this.prop || '' }
   }
 
   getObjByValue(value: CommonData['value']): CommonData | undefined {
@@ -42,6 +44,7 @@ export default class Select extends Mixins(formMixin) {
 
   setValue(value: selectValue) {
     this.value = value
+    this.change()
   }
 }
 </script>
