@@ -1,17 +1,27 @@
-export interface componentConfigIf {
-  dateFormat: String
-  dateValueFormat: String
+export interface ComponentConfig {
+  dateFormat: string
+  dateValueFormat: string
 }
 
-export interface formConfigIf {
-  componentSize: String
+export interface FormConfig {
+  componentSize: string
 }
 
-export const componentConfig: componentConfigIf = {
+export interface TableConfig {
+  componentSize: string
+  columnMinWidth: number | string
+}
+
+export const componentConfig: ComponentConfig = {
   dateFormat: 'yyyy-MM-dd hh:mm:ss',
   dateValueFormat: 'yyyy-MM-dd hh:mm:ss'
 }
 
-export const formConfig: formConfigIf = {
+export const formConfig: FormConfig = {
   componentSize: 'small'
+}
+
+export const tableConfig: TableConfig = {
+  componentSize: 'small',
+  columnMinWidth: '120px'
 }

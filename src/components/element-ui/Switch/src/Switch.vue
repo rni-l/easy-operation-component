@@ -6,8 +6,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { easySwitchOptions } from '@/types/form'
-import { switchValue, eventCallbackValue } from '@/types/common'
+import { EasySwitchOptions } from '@/types/form'
+import { switchValue, EventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 // import ValidateForm from 'easy-validate-form'
 
@@ -18,12 +18,12 @@ export default class SwitchCom extends Mixins(formMixin) {
   /**
    * @param {Function} checkIfSwitch 判断是否要改变 switch 的值
    */
-  @Prop() options!: easySwitchOptions
+  @Prop() options!: EasySwitchOptions
 
   value: switchValue = this.options.defaultValue || false
 
   @Emit()
-  change(): eventCallbackValue | Promise<eventCallbackValue> {
+  change(): EventCallbackValue | Promise<EventCallbackValue> {
     const value = this.getValue()
     if (this.options.checkIfSwitch) {
       return this.options.checkIfSwitch().then(() => {

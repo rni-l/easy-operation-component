@@ -9,8 +9,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 import UForm from '@/components/Form'
 import { listData } from '@/mock/listData'
-import { easyFormOptions } from '@/types/form'
-import { easyFormValue } from '@/types/common'
+import { EasyFormOptions } from '@/types/form'
+import { EasyFormValue } from '@/types/easy-form'
 
 @Component({
   components: {
@@ -18,7 +18,7 @@ import { easyFormValue } from '@/types/common'
   }
 })
 export default class FormCom extends Vue {
-  options1: easyFormOptions = {
+  options1: EasyFormOptions = {
     inline: false,
     labelPosition: 'left',
     labelWidth: '120px',

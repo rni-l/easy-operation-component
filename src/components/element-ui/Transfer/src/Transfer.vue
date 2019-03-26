@@ -16,8 +16,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { easyTransferOptions } from '@/types/form'
-import { transferValue, CommonData, eventCallbackValue } from '@/types/common'
+import { EasyTransferOptions } from '@/types/form'
+import { transferValue, CommonData, EventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -25,12 +25,12 @@ import formMixin from '@/mixins/form'
 })
 export default class Transfer extends Mixins(formMixin) {
   @Prop({ default: [] }) data?: CommonData[]
-  @Prop() options!: easyTransferOptions
+  @Prop() options!: EasyTransferOptions
 
   value: transferValue = this.options.defaultValue || []
 
   @Emit()
-  change(): eventCallbackValue {
+  change(): EventCallbackValue {
     const value = this.getValue()
     this.options.handleChange && this.options.handleChange(value)
     return { value, prop: this.prop || '' }

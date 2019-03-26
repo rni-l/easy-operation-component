@@ -16,6 +16,12 @@ export default new Router({
       name: 'form',
       meta: { title: 'form' },
       component: () => import('../views/Form.vue')
+    },
+    {
+      path: '/table',
+      name: 'table',
+      meta: { title: 'table' },
+      component: () => import('../views/Table.vue')
     }
   ]
 })

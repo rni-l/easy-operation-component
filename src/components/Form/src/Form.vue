@@ -43,8 +43,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Watch, Emit } from 'vue-property-decorator'
-import { easyFormValue, easyFormItem, easyFormRules } from '@/types/common'
-import { easyFormOptions } from '@/types/form'
+import { EasyFormValue, EasyFormItem, EasyFormRules } from '@/types/easy-form'
+import { EasyFormOptions } from '@/types/form'
 import formMixin from '@/mixins/form'
 import addComponentsMixin from '@/mixins/addComponents'
 
@@ -57,9 +57,9 @@ interface eventCallbackParams {
   components: {}
 })
 export default class Com extends Mixins(addComponentsMixin, formMixin) {
-  @Prop() options!: easyFormOptions
+  @Prop() options!: EasyFormOptions
 
-  data: easyFormValue = {}
+  data: EasyFormValue = {}
 
   created() {
     this.setDefaultValue()
@@ -68,7 +68,7 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
   // 获取每个 column 里面的 defaultValue
   setDefaultValue() {
     if (this.options.columns) {
-      this.data = this.options.columns.reduce((preValue: easyFormValue, curValue) => {
+      this.data = this.options.columns.reduce((preValue: EasyFormValue, curValue) => {
         if (curValue.rules) {
           preValue[curValue.prop] = curValue.options.defaultValue
         }
@@ -81,7 +81,7 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
   get getRules() {
     const rules = !this.options.columns
       ? {}
-      : this.options.columns.reduce((preValue: easyFormRules, curValue) => {
+      : this.options.columns.reduce((preValue: EasyFormRules, curValue) => {
         if (curValue.rules) {
           preValue[curValue.prop] = curValue.rules
         }
@@ -91,9 +91,9 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
     return rules
   }
 
-  getComponentByType({ type }: easyFormItem) {
-    if (!type || !this.componentsMap[type]) return false
-    return this.componentsMap[type]
+  getComponentByType({ type }: EasyFormItem) {
+    if (!type || !this.ComponentsMap[type]) return false
+    return this.ComponentsMap[type]
   }
 
   getValue () {
@@ -106,7 +106,7 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
   }
 
   @Emit()
-  handleValidate(prop: easyFormValue, valid: boolean, error?: string) {
+  handleValidate(prop: EasyFormValue, valid: boolean, error?: string) {
     return { prop, valid, error }
   }
 

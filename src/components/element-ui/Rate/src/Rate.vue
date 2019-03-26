@@ -6,8 +6,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { easyRateOptions } from '@/types/form'
-import { rateValue, eventCallbackValue } from '@/types/common'
+import { EasyRateOptions } from '@/types/form'
+import { rateValue, EventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -15,12 +15,12 @@ import formMixin from '@/mixins/form'
 })
 export default class RateCom extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: easyRateOptions
+  @Prop() options!: EasyRateOptions
 
   value: rateValue = this.options.defaultValue || 0
 
   @Emit()
-  change(): eventCallbackValue {
+  change(): EventCallbackValue {
     const value = this.getValue()
     this.options.handleChange && this.options.handleChange(value)
     return { value, prop: this.prop || '' }

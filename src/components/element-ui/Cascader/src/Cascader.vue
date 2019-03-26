@@ -7,8 +7,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { CommonData, ReturnCommonData, cascaderValue, eventCallbackValue } from '@/types/common'
-import { easyCascaderOptions } from '@/types/form'
+import { CommonData, ReturnCommonData, cascaderValue, EventCallbackValue } from '@/types/common'
+import { EasyCascaderOptions } from '@/types/form'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -16,12 +16,12 @@ import formMixin from '@/mixins/form'
 })
 export default class CascaderCom extends Mixins(formMixin) {
   @Prop({ default: [] }) data?: CommonData[]
-  @Prop() options!: easyCascaderOptions
+  @Prop() options!: EasyCascaderOptions
 
   value: cascaderValue = this.options.defaultValue || []
 
   @Emit()
-  change(): eventCallbackValue {
+  change(): EventCallbackValue {
     const value = this.getValue()
     this.options.handleChange && this.options.handleChange(value)
     return { value, prop: this.prop || '' }

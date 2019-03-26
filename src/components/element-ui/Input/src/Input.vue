@@ -24,8 +24,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { easyInputOptions } from '@/types/form'
-import { inputValue, eventCallbackValue } from '@/types/common'
+import { EasyInputOptions } from '@/types/form'
+import { inputValue, EventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -33,12 +33,12 @@ import formMixin from '@/mixins/form'
 })
 export default class Input extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: easyInputOptions
+  @Prop() options!: EasyInputOptions
 
   value: inputValue = this.options.defaultValue || undefined
 
   @Emit()
-  change(): eventCallbackValue {
+  change(): EventCallbackValue {
     const value = this.getValue()
     this.options.handleChange && this.options.handleChange(value)
     return { value, prop: this.prop || '' }
@@ -50,7 +50,7 @@ export default class Input extends Mixins(formMixin) {
   }
 
   @Emit()
-  input(): eventCallbackValue {
+  input(): EventCallbackValue {
     const value = this.getValue()
     this.options.handleInput && this.options.handleInput(value)
     return { value, prop: this.prop || '' }

@@ -11,8 +11,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { CommonData, ReturnCommonData, selectValue, eventCallbackValue } from '@/types/common'
-import { easySelectOptions } from '@/types/form'
+import { CommonData, ReturnCommonData, selectValue, EventCallbackValue } from '@/types/common'
+import { EasySelectOptions } from '@/types/form'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -20,12 +20,12 @@ import formMixin from '@/mixins/form'
 })
 export default class Select extends Mixins(formMixin) {
   @Prop({ default: [] }) data?: CommonData[]
-  @Prop() options!: easySelectOptions
+  @Prop() options!: EasySelectOptions
 
   value: selectValue = this.options.defaultValue || ''
 
   @Emit()
-  change(): eventCallbackValue {
+  change(): EventCallbackValue {
     const value = this.getValue()
     this.options.handleChange && this.options.handleChange(value)
     return { value, prop: this.prop || '' }

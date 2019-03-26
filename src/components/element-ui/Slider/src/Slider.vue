@@ -6,8 +6,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { easySliderOptions } from '@/types/form'
-import { sliderValue, eventCallbackValue } from '@/types/common'
+import { EasySliderOptions } from '@/types/form'
+import { sliderValue, EventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -15,7 +15,7 @@ import formMixin from '@/mixins/form'
 })
 export default class SliderCom extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: easySliderOptions
+  @Prop() options!: EasySliderOptions
 
   value: sliderValue = this.options.defaultValue || 0
 

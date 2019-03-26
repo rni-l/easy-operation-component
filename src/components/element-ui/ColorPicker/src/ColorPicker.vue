@@ -6,8 +6,8 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { easyColorPickerOptions } from '@/types/form'
-import { colorPickerValue, eventCallbackValue } from '@/types/common'
+import { EasyColorPickerOptions } from '@/types/form'
+import { colorPickerValue, EventCallbackValue } from '@/types/common'
 import formMixin from '@/mixins/form'
 
 @Component({
@@ -15,12 +15,12 @@ import formMixin from '@/mixins/form'
 })
 export default class ColorPickerCom extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: easyColorPickerOptions
+  @Prop() options!: EasyColorPickerOptions
 
   value: colorPickerValue = this.options.defaultValue || ''
 
   @Emit()
-  change(): eventCallbackValue {
+  change(): EventCallbackValue {
     const value = this.getValue()
     this.options.handleChange && this.options.handleChange(value)
     return { value, prop: this.prop || '' }

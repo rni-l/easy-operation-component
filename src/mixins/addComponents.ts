@@ -11,7 +11,7 @@ import USlider from '@/components/element-ui/Slider'
 import URate from '@/components/element-ui/Rate'
 import UColorPicker from '@/components/element-ui/ColorPicker'
 import UTransfer from '@/components/element-ui/Transfer'
-import { componentsMap } from '@/types/common'
+import { ComponentsMap } from '@/types/common'
 
 @Component({
   components: {
@@ -30,7 +30,7 @@ import { componentsMap } from '@/types/common'
   }
 })
 export default class From extends Vue {
-  componentsMap: componentsMap = {
+  ComponentsMap: ComponentsMap = {
     cascader: UCascader,
     checkbox: UCheckbox,
     colorPicker: UColorPicker,

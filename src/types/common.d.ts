@@ -10,44 +10,6 @@ export interface ReturnCommonData {
   obj?: CommonData
 }
 
-export interface easyFormValue {
-  [key: string]: any
-}
-
-export interface easyFromItemRules {
-  required?: boolean
-  message?: string
-  trigger: string
-  min?: number
-  max?: number
-  validator?: Function
-  [key: string]: any
-}
-
-export interface easyFormRules {
-  [key: string]: easyFromItemRules[]
-}
-
-export interface easyFormItem {
-  defaultValue?: any
-  prop: string
-  label?: string
-  type: string // 组件类型
-  required?: boolean
-  error?: string
-  showMessage?: boolean
-  inlineMessage?: boolean
-  size?: string
-  rules: easyFromItemRules[]
-  data?: any,
-  options: easyFormItemComponentOptions
-}
-
-export interface easyFormItemComponentOptions {
-  defaultValue?: any
-  [key: string]: any
-}
-
 export type checkboxValue = Array<any>
 export type radioValue = any
 export type selectValue = number | string | [number | string | undefined]
@@ -61,11 +23,11 @@ export type rateValue = number
 export type colorPickerValue = string
 export type transferValue = any[]
 
-export interface eventCallbackValue {
+export interface EventCallbackValue {
   value: any
   prop?: string
 }
 
-export interface componentsMap {
+export interface ComponentsMap {
   [key: string]: any
 }
