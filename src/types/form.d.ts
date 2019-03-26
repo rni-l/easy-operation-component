@@ -89,7 +89,7 @@ export interface EasyFormOptions {
 
 export interface EasyTableOptions {
   [key: string]: any
-  options?: EasyTableAttrOptions
+  tableOption: EasyTableAttrOptions
   columns?: EasyTableItem[]
   // height: string | number
   // maxHeight: string | number

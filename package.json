@@ -30,6 +30,8 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-angular": "^7.5.0",
     "@types/jest": "^23.1.4",
     "@typescript-eslint/parser": "^1.4.2",
     "@vue/cli-plugin-babel": "^3.4.0",
@@ -44,6 +46,7 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-import": "^1.11.0",
+    "commit-msg": "^0.2.3",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",

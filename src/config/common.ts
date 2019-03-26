@@ -10,6 +10,7 @@ export interface FormConfig {
 export interface TableConfig {
   componentSize: string
   columnMinWidth: number | string
+  align: string
 }
 
 export const componentConfig: ComponentConfig = {
@@ -23,5 +24,6 @@ export const formConfig: FormConfig = {
 
 export const tableConfig: TableConfig = {
   componentSize: 'small',
-  columnMinWidth: '120px'
+  columnMinWidth: '120px',
+  align: 'center'
 }
