@@ -60,20 +60,20 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import USelect from '@/components/element-ui/Select'
-import UInput from '@/components/element-ui/Input'
-import UInputNumber from '@/components/element-ui/InputNumber'
-import URadio from '@/components/element-ui/Radio'
-import UCheckbox from '@/components/element-ui/Checkbox'
-import UDate from '@/components/element-ui/Date'
-import UCascader from '@/components/element-ui/Cascader'
-import USwitch from '@/components/element-ui/Switch'
-import USlider from '@/components/element-ui/Slider'
-import URate from '@/components/element-ui/Rate'
-import UColorPicker from '@/components/element-ui/ColorPicker'
-import UTransfer from '@/components/element-ui/Transfer'
+import USelect from '@packages/element-ui/Select'
+import UInput from '@packages/element-ui/Input'
+import UInputNumber from '@packages/element-ui/InputNumber'
+import URadio from '@packages/element-ui/Radio'
+import UCheckbox from '@packages/element-ui/Checkbox'
+import UDate from '@packages/element-ui/Date'
+import UCascader from '@packages/element-ui/Cascader'
+import USwitch from '@packages/element-ui/Switch'
+import USlider from '@packages/element-ui/Slider'
+import URate from '@packages/element-ui/Rate'
+import UColorPicker from '@packages/element-ui/ColorPicker'
+import UTransfer from '@packages/element-ui/Transfer'
 import { listData, cascaderList, transferData } from '@/mock/listData'
-import { ReturnCommonData } from '@/types/common'
+import { ReturnCommonData } from '../../types/common'
 
 @Component({
   components: {

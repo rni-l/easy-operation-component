@@ -7,10 +7,10 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import UForm from '@/components/Form'
+import UForm from '@packages/Form'
 import { listData } from '@/mock/listData'
-import { EasyFormOptions } from '@/types/form'
-import { EasyFormValue } from '@/types/easy-form'
+import { EasyFormOptions } from '../../types/form'
+import { EasyFormValue } from '../../types/easy-form'
 
 @Component({
   components: {

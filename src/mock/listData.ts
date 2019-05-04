@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-import { CommonData } from '@/types/common'
+import { CommonData } from '../../types/common'
 
 const Random = Mock.Random
 

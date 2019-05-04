@@ -16,8 +16,8 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import UTable from '@/components/Table'
-import { EasyTableOptions } from '@/types/form'
+import UTable from '@packages/Table'
+import { EasyTableOptions } from '../../types/form'
 
 @Component({
   components: {

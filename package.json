@@ -7,6 +7,7 @@
     "cp": "cp private-config.js.template private-config.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "target": "vue-cli-service build --target lib --name easy-operation-component ./packages/index.ts",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "release": "standard-version"
