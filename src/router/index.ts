@@ -21,7 +21,19 @@ export default new Router({
       path: '/table',
       name: 'table',
       meta: { title: 'table' },
-      component: () => import('../views/Table.vue')
+      component: () => import('../views/table/index.vue')
+    },
+    {
+      path: '/pagination',
+      name: 'pagination',
+      meta: { title: 'pagination' },
+      component: () => import('../views/Pagination.vue')
+    },
+    {
+      path: '/combination',
+      name: 'combination',
+      meta: { title: 'combination' },
+      component: () => import('../views/Combination.vue')
     }
   ]
 })

@@ -5,7 +5,7 @@
         append
       </template>
       <template slot-scope="scope" slot="date">
-        {{ scope.row.date }}
+        {{ scope.row.date }} sdf
       </template>
       <template  slot="dateHeader">
         date header
@@ -17,7 +17,7 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import UTable from '@packages/Table'
-import { EasyTableOptions } from '../../types/form'
+import { options1 } from './config'
 
 @Component({
   components: {
@@ -25,34 +25,7 @@ import { EasyTableOptions } from '../../types/form'
   }
 })
 export default class Com extends Vue {
-  options1: EasyTableOptions = {
-    tableOption: {
-      align: 'center'
-    },
-    columns: [
-      {
-        prop: 'date',
-        label: '时间',
-        fixed: true
-      },
-      {
-        prop: 'date1',
-        label: '时间1',
-        minWidth: '400px',
-        formatter: (row: any) => {
-          return 'hah'
-        }
-      },
-      {
-        prop: 'date2',
-        label: '时间2',
-        minWidth: '400px',
-        formatter: (row: any) => {
-          return 'hah'
-        }
-      }
-    ]
-  }
+  options1 = options1
   data = [
     {
       date: 1, date1: '11'
