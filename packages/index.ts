@@ -13,6 +13,20 @@ import EasySlider from './element-ui/Slider'
 import EasySwitch from './element-ui/Switch'
 import EasyTransfer from './element-ui/Transfer'
 
+const components = [
+  EasyTable, EasyForm, EasyCascader, EasyCheckbox, EasyColorPicker, EasyDate, EasyInput, EasyInputNumber, EasyRadio, EasyRate, EasySelect, EasySlider, EasySwitch, EasyTransfer
+]
+const install = function (Vue: any, opts = {}) {
+  components.forEach(component => {
+    Vue.component(component.name, component)
+  })
+}
+
+/* istanbul ignore if */
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
 export default {
   EasyTable,
   EasyForm,

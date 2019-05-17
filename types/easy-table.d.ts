@@ -10,3 +10,5 @@ export interface EasyTableAttrOptions {
   [key: string]: any
   align?: string
 }
+
+export class EasyTable {}

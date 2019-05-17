@@ -1,0 +1,18 @@
+{
+  "easy-table": "./packages/Table/index.ts",
+  "easy-form": "./packages/Form/index.ts",
+  "easy-pagination": "./packages/Pagination/index.ts",
+  "easy-cascader": "./packages/element-ui/Cascader/index.ts",
+  "easy-checkbox": "./packages/element-ui/Checkbox/index.ts",
+  "easy-colorPicker": "./packages/element-ui/ColorPicker/index.ts",
+  "easy-date": "./packages/element-ui/Date/index.ts",
+  "easy-input": "./packages/element-ui/Input/index.ts",
+  "easy-inputNumber": "./packages/element-ui/InputNumber/index.ts",
+  "easy-radio": "./packages/element-ui/Radio/index.ts",
+  "easy-rate": "./packages/element-ui/Rate/index.ts",
+  "easy-select": "./packages/element-ui/Select/index.ts",
+  "easy-slider": "./packages/element-ui/Slider/index.ts",
+  "easy-switch": "./packages/element-ui/Switch/index.ts",
+  "easy-transfer": "./packages/element-ui/Transfer/index.ts",
+  "index": "./packages/index.ts"
+}

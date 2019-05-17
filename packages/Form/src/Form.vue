@@ -87,7 +87,6 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
         }
         return preValue
       }, {})
-    console.log(rules)
     return rules
   }
 
@@ -112,7 +111,6 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   @Emit()
   change() {
-    console.log(JSON.parse(JSON.stringify(this.data)))
     return { data: this.data }
   }
 

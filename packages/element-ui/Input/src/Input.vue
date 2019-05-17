@@ -67,7 +67,6 @@ export default class Input extends Mixins(formMixin) {
   }
 
   getValue() {
-    console.log(this.value)
     return this.value
   }
 

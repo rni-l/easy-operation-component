@@ -35,3 +35,5 @@ export interface EasyFormItemComponentOptions {
   defaultValue?: any
   [key: string]: any
 }
+
+export class EasyForm {}

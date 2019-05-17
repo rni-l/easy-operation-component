@@ -1,9 +1,16 @@
 const CONFIG = require('./private-config.js')
 const path = require('path')
+const components = require('./components.json')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
+
+const entrys = Object.keys(components).reduce((acc, item) => {
+  acc[item] = components[item]
+  return acc
+}, {})
 
 module.exports = {
   baseUrl: CONFIG.publicPath,
@@ -32,8 +39,45 @@ module.exports = {
     extract: false
   },
 
-  configureWebpack: {
-    resolve: {
+  outputDir: resolve('./lib'),
+
+  chainWebpack: config => {
+    config.plugins
+      .delete('html')
+      .delete('preload')
+      .delete('prefetch')
+      .delete('copy')
+      .delete('hmr')
+      .end()
+    config.optimization.minimize(true).end()
+    config.optimization.splitChunks(false)
+  },
+
+  configureWebpack: function(config) {
+    config.entry = entrys
+    config.output = {
+      ...config.output,
+      filename: '[name].js',
+      // libraryExport: 'default',
+      library: 'EasyOperationComponent',
+      libraryTarget: 'commonjs2'
+    }
+    config.externals = {
+      vue: {
+        commonjs: 'vue',
+        commonjs2: 'vue',
+        amd: 'vue',
+        root: 'Vue'
+      },
+      'element-ui': {
+        commonjs: 'element-ui',
+        commonjs2: 'element-ui',
+        amd: 'element-ui',
+        root: 'ELEMENT'
+      }
+    }
+    config.resolve = {
+      ...config.resolve,
       alias: {
         vue$: 'vue/dist/vue.esm.js',
         '@utils': resolve('src/utils'),
