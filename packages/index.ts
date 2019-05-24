@@ -1,5 +1,6 @@
 import EasyTable from './Table'
 import EasyForm from './Form'
+import EasyPagination from './Pagination'
 import EasyCascader from './element-ui/Cascader'
 import EasyCheckbox from './element-ui/Checkbox'
 import EasyColorPicker from './element-ui/ColorPicker'
@@ -14,7 +15,7 @@ import EasySwitch from './element-ui/Switch'
 import EasyTransfer from './element-ui/Transfer'
 
 const components = [
-  EasyTable, EasyForm, EasyCascader, EasyCheckbox, EasyColorPicker, EasyDate, EasyInput, EasyInputNumber, EasyRadio, EasyRate, EasySelect, EasySlider, EasySwitch, EasyTransfer
+  EasyTable, EasyForm, EasyPagination, EasyCascader, EasyCheckbox, EasyColorPicker, EasyDate, EasyInput, EasyInputNumber, EasyRadio, EasyRate, EasySelect, EasySlider, EasySwitch, EasyTransfer
 ]
 const install = function (Vue: any, opts = {}) {
   components.forEach(component => {
@@ -30,6 +31,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   EasyTable,
   EasyForm,
+  EasyPagination,
   EasyCascader,
   EasyCheckbox,
   EasyColorPicker,
@@ -41,5 +43,6 @@ export default {
   EasySelect,
   EasySlider,
   EasySwitch,
-  EasyTransfer
+  EasyTransfer,
+  install
 }

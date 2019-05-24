@@ -19,7 +19,7 @@ import formMixin from '@/mixins/form'
 })
 export default class Checkbox extends Mixins(formMixin) {
   @Prop({ default: () => [] }) data?: CommonData[]
-  @Prop() options!: EasyCheckboxOptions
+  @Prop({ default: () => ({}) }) options!: EasyCheckboxOptions
 
   value: checkboxValue = this.options.defaultValue || []
 

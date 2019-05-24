@@ -28,7 +28,7 @@ export interface EasyFormItem {
   size?: string
   rules: EasyFromItemRules[]
   data?: any,
-  options: EasyFormItemComponentOptions
+  options?: EasyFormItemComponentOptions
 }
 
 export interface EasyFormItemComponentOptions {

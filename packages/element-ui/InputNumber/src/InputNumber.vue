@@ -17,7 +17,7 @@ import formMixin from '@/mixins/form'
 })
 export default class InputNumber extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: EasyInputNumberOptions
+  @Prop({ default: () => ({}) }) options!: EasyInputNumberOptions
 
   value: inputNumberValue = this.options.defaultValue || 0
 

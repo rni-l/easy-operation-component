@@ -15,7 +15,7 @@ import formMixin from '@/mixins/form'
 })
 export default class RateCom extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: EasyRateOptions
+  @Prop({ default: () => ({}) }) options!: EasyRateOptions
 
   value: rateValue = this.options.defaultValue || 0
 

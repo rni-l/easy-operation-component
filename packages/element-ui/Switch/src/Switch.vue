@@ -18,7 +18,7 @@ export default class SwitchCom extends Mixins(formMixin) {
   /**
    * @param {Function} checkIfSwitch 判断是否要改变 switch 的值
    */
-  @Prop() options!: EasySwitchOptions
+  @Prop({ default: () => ({}) }) options!: EasySwitchOptions
 
   value: switchValue = this.options.defaultValue || false
 

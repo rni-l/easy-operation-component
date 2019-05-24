@@ -33,9 +33,9 @@ import formMixin from '@/mixins/form'
 })
 export default class Input extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: EasyInputOptions
+  @Prop({ default: () => ({}) }) options!: EasyInputOptions
 
-  value: inputValue = this.options.defaultValue || undefined
+  value: inputValue = this.options.defaultValue || ''
 
   @Emit()
   change(): EventCallbackValue {

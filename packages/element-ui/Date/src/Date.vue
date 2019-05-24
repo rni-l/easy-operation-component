@@ -37,7 +37,7 @@ import formMixin from '@/mixins/form'
   components: {}
 })
 export default class DateCom extends Mixins(formMixin) {
-  @Prop() options!: EasyDateOptions
+  @Prop({ default: () => ({}) }) options!: EasyDateOptions
 
   value: dateComponentValue = this.options.defaultValue || ''
   defaultFormat = componentConfig.dateFormat

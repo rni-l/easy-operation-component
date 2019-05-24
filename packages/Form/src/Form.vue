@@ -1,21 +1,21 @@
 <template>
   <el-form class='easy_form'
     :model='data' :rules='getRules'
-    :inline="options.inline || false"
-    :labelPosition="options.labelPosition || 'right'"
-    :labelWidth="options.labelWidth || ''"
-    :labelSuffix="options.labelSuffix || ''"
-    :hideRequired="options.hideRequired || false"
-    :showMessage="options.showMessage"
-    :inlineMessage="options.inlineMessage || false"
-    :statusIcon="options.statusIcon || false"
-    :validateOnRuleChange="options.validateOnRuleChange"
-    :size="options.size || mixinConfig.componentSize"
-    :disabled="options.disabled || false"
+    :inline="curOptions.inline || false"
+    :labelPosition="curOptions.labelPosition || 'right'"
+    :labelWidth="curOptions.labelWidth || ''"
+    :labelSuffix="curOptions.labelSuffix || ''"
+    :hideRequired="curOptions.hideRequired || false"
+    :showMessage="curOptions.showMessage"
+    :inlineMessage="curOptions.inlineMessage || false"
+    :statusIcon="curOptions.statusIcon || false"
+    :validateOnRuleChange="curOptions.validateOnRuleChange"
+    :size="curOptions.size || mixinConfig.componentSize"
+    :disabled="curOptions.disabled || false"
     ref="form"
     @validate='handleValidate'
   >
-    <el-form-item v-for='item in options.columns'
+    <el-form-item v-for='item in curOptions.columns'
       :key="item.prop"
       :prop='item.prop'
       :label="item.label || ''"
@@ -38,6 +38,14 @@
         <slot name='label' :error='error' />
       </template>
     </el-form-item>
+
+    <el-form-item
+      :size="mixinConfig.componentSize"
+      v-if="curOptions.isShowBtnGroup"
+    >
+      <el-button :size="mixinConfig.componentSize" type="primary" @click="search">搜索</el-button>
+      <el-button :size="mixinConfig.componentSize" @click="resetSearch">清空</el-button>
+    </el-form-item>
   </el-form>
 </template>
 
@@ -49,6 +57,7 @@ import formMixin from '@/mixins/form'
 import addComponentsMixin from '@/mixins/addComponents'
 
 interface eventCallbackParams {
+  [key: string]: any
   value: any
   prop: string
 }
@@ -57,9 +66,16 @@ interface eventCallbackParams {
   components: {}
 })
 export default class Com extends Mixins(addComponentsMixin, formMixin) {
-  @Prop() options!: EasyFormOptions
+  @Prop({ default: () => ({}) }) options!: EasyFormOptions
 
   data: EasyFormValue = {}
+
+  get curOptions(): EasyFormOptions {
+    return {
+      ...this.options,
+      isShowBtnGroup: true
+    }
+  }
 
   created() {
     this.setDefaultValue()
@@ -67,10 +83,10 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   // 获取每个 column 里面的 defaultValue
   setDefaultValue() {
-    if (this.options.columns) {
-      this.data = this.options.columns.reduce((preValue: EasyFormValue, curValue) => {
+    if (this.curOptions.columns) {
+      this.data = this.curOptions.columns.reduce((preValue: EasyFormValue, curValue) => {
         if (curValue.rules) {
-          preValue[curValue.prop] = curValue.options.defaultValue
+          preValue[curValue.prop] = curValue.options ? (curValue.options.defaultValue || '') : ''
         }
         return preValue
       }, {})
@@ -79,9 +95,9 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   // 将每个 column 里面的 rules 抽出来，封装成 Object 形式
   get getRules() {
-    const rules = !this.options.columns
+    const rules = !this.curOptions.columns
       ? {}
-      : this.options.columns.reduce((preValue: EasyFormRules, curValue) => {
+      : this.curOptions.columns.reduce((preValue: EasyFormRules, curValue) => {
         if (curValue.rules) {
           preValue[curValue.prop] = curValue.rules
         }
@@ -99,9 +115,19 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
     this.$emit('getValue', this.data)
   }
 
-  setValue({ value, prop }: eventCallbackParams) {
-    const com: any = this.$refs[prop]
-    com[0] && com[0].setValue(value)
+  /**
+   * 表单赋值
+   */
+  setValue(values: eventCallbackParams | eventCallbackParams[]) {
+    if (Array.isArray(values)) {
+      values.forEach(v => {
+        const com: any = this.$refs[v.prop]
+        com[0] && com[0].setValue(v.value)
+      })
+    } else if (values.prop) {
+      const com: any = this.$refs[values.prop]
+      com[0] && com[0].setValue(values.value)
+    }
   }
 
   @Emit()
@@ -112,6 +138,16 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
   @Emit()
   change() {
     return { data: this.data }
+  }
+
+  @Emit()
+  resetSearch() {
+    return this.data
+  }
+
+  @Emit()
+  search() {
+    return this.data
   }
 
   setValueByProp(value: eventCallbackParams['value'], prop: eventCallbackParams['prop']) {
@@ -145,7 +181,7 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
   }
 
   checkFormDom(): any {
-    const form: any = this.$refs
+    const form: any = this.$refs['form']
     if (!form) {
       throw new Error('Form 组件未挂载，无法调用该方法')
     }
@@ -154,13 +190,13 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   validate(): Promise<boolean> {
     const form: any = this.checkFormDom()
-    return new Promise((resolve, reject) => {
-      if (!form) reject(false)
+    return new Promise((resolve) => {
+      if (!form) resolve(false)
       form.validate((valid: Boolean) => {
         if (valid) {
           resolve(true)
         } else {
-          reject(false)
+          resolve(false)
         }
       })
     })

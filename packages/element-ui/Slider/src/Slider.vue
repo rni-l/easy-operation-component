@@ -15,7 +15,7 @@ import formMixin from '@/mixins/form'
 })
 export default class SliderCom extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: EasySliderOptions
+  @Prop({ default: () => ({}) }) options!: EasySliderOptions
 
   value: sliderValue = this.options.defaultValue || 0
 

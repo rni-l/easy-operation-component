@@ -15,7 +15,7 @@ import formMixin from '@/mixins/form'
 })
 export default class ColorPickerCom extends Mixins(formMixin) {
   // @Prop({ default: undefined }) defaultValue?: any
-  @Prop() options!: EasyColorPickerOptions
+  @Prop({ default: () => ({}) }) options!: EasyColorPickerOptions
 
   value: colorPickerValue = this.options.defaultValue || ''
 

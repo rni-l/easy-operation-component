@@ -1,7 +1,10 @@
 <template>
   <div class='m_form'>
-    <u-form :options='options1' @change='change' ref='form'></u-form>
+    <u-form :options='options1' @change='change' ref='form' @resetSearch="handleResetSearch"
+      @search="handleSearch"
+    ></u-form>
     <el-button @click='set'>设置</el-button>
+    <el-button @click='set2'>赋值</el-button>
   </div>
 </template>
 
@@ -31,6 +34,15 @@ export default class FormCom extends Vue {
     disabled: false,
     columns: [
       {
+        prop: 'username',
+        label: '用户名',
+        type: 'input',
+        required: true,
+        rules: [
+          { type: 'string', required: true, message: '请输入账号', trigger: 'change' }
+        ]
+      },
+      {
         prop: 'test',
         label: 'input',
         type: 'input',
@@ -39,9 +51,8 @@ export default class FormCom extends Vue {
           { type: 'string', required: true, message: '请输入内容', trigger: 'change' }
         ],
         options: {
-          handleInput: this.inputChange,
           type: 'text',
-          defaultValue: 11
+          defaultValue: '11'
         }
       },
       {
@@ -100,13 +111,28 @@ export default class FormCom extends Vue {
     console.log('input:', value)
   }
 
-  change({ data }: any) {
-    console.log(data)
+  async change({ data }: any) {
+    const form: any = this.$refs['form']
+    const result = await form.validate()
   }
 
   set() {
     const form: any = this.$refs['form']
     form.setValue({ prop: 'test', value: 'hah' })
+  }
+
+  set2() {
+    const form: any = this.$refs['form']
+    form.setValue([
+      { prop: 'username', value: 'hah' },
+      { prop: 'test3', value: listData[1].value }
+    ])
+  }
+
+  handleResetSearch() {}
+
+  handleSearch(data: any) {
+    console.log(data)
   }
 }
 </script>

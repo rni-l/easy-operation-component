@@ -19,7 +19,7 @@ import formMixin from '@/mixins/form'
 })
 export default class Radio extends Mixins(formMixin) {
   @Prop({ default: () => [] }) data?: CommonData[]
-  @Prop() options!: EasyRadioOptions
+  @Prop({ default: () => ({}) }) options!: EasyRadioOptions
 
   value: radioValue = this.options.defaultValue
 

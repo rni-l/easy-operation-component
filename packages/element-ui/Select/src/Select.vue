@@ -20,7 +20,7 @@ import formMixin from '@/mixins/form'
 })
 export default class Select extends Mixins(formMixin) {
   @Prop({ default: [] }) data?: CommonData[]
-  @Prop() options!: EasySelectOptions
+  @Prop({ default: () => ({}) }) options!: EasySelectOptions
 
   value: selectValue = this.options.defaultValue || ''
 

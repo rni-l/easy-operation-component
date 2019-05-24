@@ -16,7 +16,7 @@ import formMixin from '@/mixins/form'
 })
 export default class CascaderCom extends Mixins(formMixin) {
   @Prop({ default: [] }) data?: CommonData[]
-  @Prop() options!: EasyCascaderOptions
+  @Prop({ default: () => ({}) }) options!: EasyCascaderOptions
 
   value: cascaderValue = this.options.defaultValue || []
 

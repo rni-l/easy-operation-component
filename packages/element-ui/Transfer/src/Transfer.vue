@@ -25,7 +25,7 @@ import formMixin from '@/mixins/form'
 })
 export default class Transfer extends Mixins(formMixin) {
   @Prop({ default: [] }) data?: CommonData[]
-  @Prop() options!: EasyTransferOptions
+  @Prop({ default: () => ({}) }) options!: EasyTransferOptions
 
   value: transferValue = this.options.defaultValue || []
 

@@ -61,7 +61,7 @@ import { tableConfig } from '@/config/common'
   components: {}
 })
 export default class Com extends Vue {
-  @Prop() options!: EasyTableOptions
+  @Prop({ default: () => ({}) }) options!: EasyTableOptions
   @Prop({ default: () => ([]) }) data?: Array<any>
 
   tableConfig = tableConfig
