@@ -55,6 +55,7 @@ import { EasyFormValue, EasyFormItem, EasyFormRules } from '../../../types/easy-
 import { EasyFormOptions } from '../../../types/form'
 import formMixin from '@/mixins/form'
 import addComponentsMixin from '@/mixins/addComponents'
+import { merge } from '@packages/utils'
 
 interface eventCallbackParams {
   [key: string]: any
@@ -70,11 +71,10 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   data: EasyFormValue = {}
 
-  get curOptions(): EasyFormOptions {
-    return {
-      ...this.options,
+  get curOptions() {
+    return merge(this.options, {
       isShowBtnGroup: true
-    }
+    }) as EasyFormOptions
   }
 
   created() {

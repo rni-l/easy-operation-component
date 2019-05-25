@@ -1,9 +1,28 @@
 <template>
   <div class='easy_table'>
+    <!-- 顶部操作栏 -->
+    <div class="easy_table_top">
+      <div class="easy_table_top_left">
+        <el-button v-if="curOptions.isShowAddBtn"
+          icon="el-icon-plus"
+          :size="mixinConfig.componentSize"
+          type="primary" @click="add">添加</el-button>
+        <slot name="top-left" />
+      </div>
+      <div class="easy_table_top_right">
+        <el-button v-if="curOptions.isShowRefreshBtn"
+          icon="el-icon-refresh"
+          :size="mixinConfig.componentSize"
+          @click="refresh">刷新</el-button>
+        <slot name="top-right" />
+      </div>
+    </div>
+
+    <!-- element-ui table -->
     <el-table
       ref='table'
       :data='data'
-      v-bind='options.tableOption'
+      v-bind='curOptions.tableOption'
       @select='handleSelect'
       @select-all='handleSelectAll'
       @selection-change='hanldeSelectionChange'
@@ -26,9 +45,9 @@
         <slot name="append" />
       </template>
       <el-table-column
-        v-for="column in options.columns" :key="column.prop"
+        v-for="column in curOptions.columns" :key="column.prop"
         :minWidth="column.minWidth || tableConfig.columnMinWidth"
-        :align="column.align || options.tableOption.align || tableConfig.align"
+        :align="column.align || curOptions.tableOption.align || tableConfig.align"
         v-bind="column"
       >
 
@@ -53,14 +72,16 @@
 </template>
 
 <script lang='ts'>
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Emit, Mixins } from 'vue-property-decorator'
 import { EasyTableOptions } from '../../../types/form'
+import formMixin from '@/mixins/form'
 import { tableConfig } from '@/config/common'
+import { merge } from '@packages/utils'
 
 @Component({
   components: {}
 })
-export default class Com extends Vue {
+export default class Com extends Mixins(formMixin) {
   @Prop({ default: () => ({}) }) options!: EasyTableOptions
   @Prop({ default: () => ([]) }) data?: Array<any>
 
@@ -68,6 +89,22 @@ export default class Com extends Vue {
 
   created() {
   }
+
+  get curOptions() {
+    return merge(this.options, {
+      isShowAddBtn: true,
+      isShowRefreshBtn: true,
+      tableOption: {
+        stripe: true
+      }
+    }) as EasyTableOptions
+  }
+
+  @Emit()
+  add() {}
+
+  @Emit()
+  refresh() {}
 
   // element-ui table 的内置事件
   handleSelect(...args: any[]) {
@@ -163,5 +200,16 @@ export default class Com extends Vue {
 </script>
 
 <style lang='scss'>
-.easy_table {}
+.easy_table {
+  &_top {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_left, &_right {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
 </style>

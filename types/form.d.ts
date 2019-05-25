@@ -92,39 +92,6 @@ export interface EasyTableOptions {
   [key: string]: any
   tableOption: EasyTableAttrOptions
   columns?: EasyTableItem[]
-  // height: string | number
-  // maxHeight: string | number
-  // stripe: boolean
-  // border: boolean
-  // fit: boolean
-  // showHeader: boolean
-  // highlightCurrentRow: boolean
-  // currentRowKey: string | number
-  // rowClassName: string | ((param: rowCallbackParams) => string)
-  // rowStyle: object | ((param: rowCallbackParams) => object)
-  // cellClassName: string | ((param: cellCallbackParams) => string)
-  // cellStyle: object | ((param: cellCallbackParams) => object)
-  // headerRowClassName: string | ((param: rowCallbackParams) => string)
-  // headerRowStyle: object | ((param: rowCallbackParams) => object)
-  // headerCellClassName: string | ((param: cellCallbackParams) => string)
-  // headerCellStyle: object | ((param: cellCallbackParams) => object)
-  // rowKey: (row: object) => any
-  // emptyText: String
-  // defaultExpandAll: Boolean
-  // expandRowKeys: any[]
-  // defaultSort: DefaultSortOptions
-  // tooltipEffect: TooltipEffect
-  // showSummary: boolean
-  // sumText: string
-  // summaryMethod: (param: SummaryMethodParams) => any[]
-  // selectOnIndeterminate: boolean
-  // clearSelection(): void
-  // toggleRowSelection(row: object, selected?: boolean): void
-  // toggleAllSelection(): void
-  // setCurrentRow(row?: object): void
-  // toggleRowExpansion(row: object, expanded?: boolean): void
-  // clearSort(): void
-  // clearFilter(): void
-  // doLayout(): void
-  // sort(prop: string, order: string): void
+  isShowAddBtn?: boolean
+  isShowRefreshBtn?: boolean
 }

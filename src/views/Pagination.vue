@@ -9,8 +9,31 @@
 
 <script lang='ts'>
 import Pagination from '@packages/Pagination'
+import { merge } from '@packages/utils'
 
 import { Component, Vue } from 'vue-property-decorator'
+
+const obj1 = {
+  a: '1',
+  aa: {
+    aa1: 'aa1',
+    aa2: {
+      aa2_1: 'aa2_1'
+    }
+  },
+  z: 1,
+  x: [],
+  g: () => 1,
+  y: undefined
+}
+const obj2 = {
+  b: '2',
+  aa: {
+    aa3: 'aa3'
+  }
+}
+
+console.log(merge(obj1, obj2))
 
 @Component({
   components: {
