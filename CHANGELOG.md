@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.10](https://github.com/rni-l/easy-operation-component/compare/v0.1.9...v0.1.10) (2019-05-25)
+
+
+### Features
+
+* **form:** 优化设置默认值和重设值 ([0042584](https://github.com/rni-l/easy-operation-component/commit/0042584))
+
+
+
 ## 0.1.9 (2019-05-25)
 
 
