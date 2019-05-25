@@ -26,7 +26,7 @@ export interface EasyFormItem {
   showMessage?: boolean
   inlineMessage?: boolean
   size?: string
-  rules: EasyFromItemRules[]
+  rules?: EasyFromItemRules[]
   data?: any,
   options?: EasyFormItemComponentOptions
 }

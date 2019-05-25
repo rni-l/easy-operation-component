@@ -86,6 +86,7 @@ export interface EasyFormOptions {
   disabled?: boolean
   columns?: EasyFormItem[]
   isShowBtnGroup?: boolean
+  isResetDefaultValue?: boolean
 }
 
 export interface EasyTableOptions {

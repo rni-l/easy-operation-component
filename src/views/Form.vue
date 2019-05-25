@@ -60,9 +60,6 @@ export default class FormCom extends Vue {
         label: 'input number',
         type: 'inputNumber',
         required: true,
-        rules: [
-          { type: 'number', required: true, message: '请输入内容', trigger: 'change' }
-        ],
         options: {
           handleInput: this.inputChange,
           type: 'number',
@@ -107,11 +104,17 @@ export default class FormCom extends Vue {
     ]
   }
 
+  mounted() {
+    const form: any = this.$refs['form']
+    console.log(form.data)
+  }
+
   inputChange(value: any) {
     console.log('input:', value)
   }
 
   async change({ data }: any) {
+    console.log(data)
     const form: any = this.$refs['form']
     const result = await form.validate()
   }
@@ -129,7 +132,9 @@ export default class FormCom extends Vue {
     ])
   }
 
-  handleResetSearch() {}
+  handleResetSearch(data: any) {
+    console.log(data)
+  }
 
   handleSearch(data: any) {
     console.log(data)

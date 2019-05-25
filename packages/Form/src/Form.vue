@@ -73,7 +73,8 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   get curOptions() {
     return merge(this.options, {
-      isShowBtnGroup: true
+      isShowBtnGroup: true,
+      isResetDefaultValue: true
     }) as EasyFormOptions
   }
 
@@ -85,9 +86,7 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
   setDefaultValue() {
     if (this.curOptions.columns) {
       this.data = this.curOptions.columns.reduce((preValue: EasyFormValue, curValue) => {
-        if (curValue.rules) {
-          preValue[curValue.prop] = curValue.options ? (curValue.options.defaultValue || '') : ''
-        }
+        preValue[curValue.prop] = curValue.options ? (curValue.options.defaultValue || '') : ''
         return preValue
       }, {})
     }
@@ -111,8 +110,8 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
     return this.ComponentsMap[type]
   }
 
-  getValue () {
-    this.$emit('getValue', this.data)
+  getValue (): EasyFormValue {
+    return this.data
   }
 
   /**
@@ -130,6 +129,17 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
     }
   }
 
+  /**
+   * 根据默认值清空
+   */
+  resetDefaultValue() {
+    this.setDefaultValue()
+    Object.keys(this.data).forEach(prop => {
+      const com: any = this.$refs[prop]
+      com[0] && com[0].setValue(this.data[prop])
+    })
+  }
+
   @Emit()
   handleValidate(prop: EasyFormValue, valid: boolean, error?: string) {
     return { prop, valid, error }
@@ -142,6 +152,9 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   @Emit()
   resetSearch() {
+    if (this.curOptions.isResetDefaultValue) {
+      this.resetDefaultValue()
+    }
     return this.data
   }
 
