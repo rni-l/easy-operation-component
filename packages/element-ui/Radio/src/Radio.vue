@@ -25,9 +25,9 @@ export default class Radio extends Mixins(formMixin) {
 
   @Emit()
   change(): EventCallbackValue {
-    const value = this.getValue()
+    const { value, obj } = this.getValue()
     this.options.handleChange && this.options.handleChange(value)
-    return { value, prop: this.prop || '' }
+    return { value, objValue: obj, prop: this.prop || '' }
   }
 
   getObjByValue(value: CommonData['value']): CommonData | undefined {

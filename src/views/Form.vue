@@ -114,9 +114,10 @@ export default class FormCom extends Vue {
   }
 
   async change({ data }: any) {
-    console.log(data)
+    console.log('change:', JSON.parse(JSON.stringify(data)))
     const form: any = this.$refs['form']
     const result = await form.validate()
+    console.log(result)
   }
 
   set() {
@@ -133,7 +134,7 @@ export default class FormCom extends Vue {
   }
 
   handleResetSearch(data: any) {
-    console.log(data)
+    console.log('resetSearch:', JSON.parse(JSON.stringify(data)))
   }
 
   handleSearch(data: any) {

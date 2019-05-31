@@ -72,24 +72,10 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
   data: EasyFormValue = {}
 
   get curOptions() {
-    return merge(this.options, {
+    return merge({
       isShowBtnGroup: true,
       isResetDefaultValue: true
-    }) as EasyFormOptions
-  }
-
-  created() {
-    this.setDefaultValue()
-  }
-
-  // 获取每个 column 里面的 defaultValue
-  setDefaultValue() {
-    if (this.curOptions.columns) {
-      this.data = this.curOptions.columns.reduce((preValue: EasyFormValue, curValue) => {
-        preValue[curValue.prop] = curValue.options ? (curValue.options.defaultValue || '') : ''
-        return preValue
-      }, {})
-    }
+    }, this.options) as EasyFormOptions
   }
 
   // 将每个 column 里面的 rules 抽出来，封装成 Object 形式
@@ -105,6 +91,45 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
     return rules
   }
 
+  @Emit('handleValidate')
+  handleValidate(prop: EasyFormValue, valid: boolean, error?: string) {
+    return { prop, valid, error }
+  }
+
+  @Emit('change')
+  change() {
+    return { data: this.data }
+  }
+
+  @Emit('resetSearch')
+  resetSearch() {
+    if (this.curOptions.isResetDefaultValue) {
+      this.resetDefaultValue()
+    }
+    return this.data
+  }
+
+  @Emit('search')
+  search() {
+    return this.data
+  }
+
+  created() {
+    this.setDefaultValue()
+  }
+
+  /**
+   * 获取每个 column 里面的 defaultValue
+   */
+  setDefaultValue() {
+    if (this.curOptions.columns) {
+      this.data = this.curOptions.columns.reduce((preValue: EasyFormValue, curValue) => {
+        preValue[curValue.prop] = curValue.options ? (curValue.options.defaultValue) : ''
+        return preValue
+      }, {})
+    }
+  }
+
   getComponentByType({ type }: EasyFormItem) {
     if (!type || !this.ComponentsMap[type]) return false
     return this.ComponentsMap[type]
@@ -116,12 +141,15 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   /**
    * 表单赋值
+   * setValue 不会触发 change 事件
    */
   setValue(values: eventCallbackParams | eventCallbackParams[]) {
     if (Array.isArray(values)) {
       values.forEach(v => {
         const com: any = this.$refs[v.prop]
-        com[0] && com[0].setValue(v.value)
+        Array.isArray(com)
+          ? (com[0] && com[0].setValue(v.value))
+          : com && com.setValue(v.value)
       })
     } else if (values.prop) {
       const com: any = this.$refs[values.prop]
@@ -133,60 +161,45 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
    * 根据默认值清空
    */
   resetDefaultValue() {
+    // 将当前组件的 data ，根据 defaultValue 设置值
     this.setDefaultValue()
     Object.keys(this.data).forEach(prop => {
       const com: any = this.$refs[prop]
+      // 再设置组件的值
       com[0] && com[0].setValue(this.data[prop])
     })
-  }
-
-  @Emit()
-  handleValidate(prop: EasyFormValue, valid: boolean, error?: string) {
-    return { prop, valid, error }
-  }
-
-  @Emit()
-  change() {
-    return { data: this.data }
-  }
-
-  @Emit()
-  resetSearch() {
-    if (this.curOptions.isResetDefaultValue) {
-      this.resetDefaultValue()
-    }
-    return this.data
-  }
-
-  @Emit()
-  search() {
-    return this.data
   }
 
   setValueByProp(value: eventCallbackParams['value'], prop: eventCallbackParams['prop']) {
     this.$set(this.data, prop, value)
   }
 
-  // 通过这两个事件订阅，去改变数据
-  handleChange({ value, prop }: eventCallbackParams) {
+  /**
+   * 通过这两个事件订阅，去改变数据
+   */
+  handleFormComponentChange({ value, prop }: eventCallbackParams) {
+    console.log(value, prop)
     const isDiff = this.checkDiffByProp({ value, prop })
+    if (!isDiff) return
+    // 当两个值不一样时，触发 change 事件
     this.setValueByProp(value, prop)
     this.$nextTick(() => {
-      if (isDiff) {
-        this.change()
-      }
+      this.change()
     })
   }
 
-  // 通过这两个事件订阅，去改变数据
+  /**
+   * 监听组件的 change 事件
+  */
+  handleChange({ value, prop }: eventCallbackParams) {
+    this.handleFormComponentChange({ value, prop })
+  }
+
+  /**
+   * 监听组件的 input 事件
+  */
   handleInput({ value, prop }: eventCallbackParams) {
-    const isDiff = this.checkDiffByProp({ value, prop })
-    this.setValueByProp(value, prop)
-    this.$nextTick(() => {
-      if (isDiff) {
-        this.change()
-      }
-    })
+    this.handleFormComponentChange({ value, prop })
   }
 
   checkDiffByProp({ value, prop }: eventCallbackParams): boolean {

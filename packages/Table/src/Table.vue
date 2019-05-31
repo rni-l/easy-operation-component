@@ -91,13 +91,13 @@ export default class Com extends Mixins(formMixin) {
   }
 
   get curOptions() {
-    return merge(this.options, {
+    return merge({
       isShowAddBtn: true,
       isShowRefreshBtn: true,
       tableOption: {
         stripe: true
       }
-    }) as EasyTableOptions
+    }, this.options) as EasyTableOptions
   }
 
   @Emit()

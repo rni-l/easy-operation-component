@@ -10,7 +10,7 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
-import { CommonData, checkboxValue, EventCallbackValue } from '../../../../types/common'
+import { CommonData, checkboxValue, EventCallbackValue, ReturnCommonData } from '../../../../types/common'
 import { EasyCheckboxOptions } from '../../../../types/form'
 import formMixin from '@/mixins/form'
 
@@ -25,17 +25,20 @@ export default class Checkbox extends Mixins(formMixin) {
 
   @Emit()
   change(): EventCallbackValue {
-    const value = this.getValue()
+    const { value, obj } = this.getValue()
     this.options.handleChange && this.options.handleChange(value)
-    return { value, prop: this.prop || '' }
+    return { value, objValue: obj, prop: this.prop || '' }
   }
 
   getObjByValue(value: CommonData['value']): CommonData | undefined {
     return this.data ? this.data.find(item => item.value === value) : undefined
   }
 
-  getValue(): checkboxValue {
-    return this.value
+  getValue(): ReturnCommonData {
+    return {
+      value: this.value,
+      obj: this.getObjByValue(this.value)
+    }
   }
 
   setValue(value: checkboxValue) {

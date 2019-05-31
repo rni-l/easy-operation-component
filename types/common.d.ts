@@ -25,6 +25,8 @@ export type transferValue = any[]
 
 export interface EventCallbackValue {
   value: any
+  // FOCUS:
+  objValue?: any
   prop?: string
 }
 
