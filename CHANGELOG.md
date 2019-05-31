@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.11](https://github.com/rni-l/easy-operation-component/compare/v0.1.10...v0.1.11) (2019-05-31)
+
+
+### Bug Fixes
+
+* 表单返回的数据格式不一致问题 ([7a101a2](https://github.com/rni-l/easy-operation-component/commit/7a101a2))
+
+
+
 ## [0.1.10](https://github.com/rni-l/easy-operation-component/compare/v0.1.9...v0.1.10) (2019-05-25)
 
 
