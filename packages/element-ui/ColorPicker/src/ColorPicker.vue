@@ -8,7 +8,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { EasyColorPickerOptions } from '../../../../types/form'
 import { colorPickerValue, EventCallbackValue } from '../../../../types/common'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

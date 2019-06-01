@@ -22,6 +22,7 @@ export type sliderValue = number
 export type rateValue = number
 export type colorPickerValue = string
 export type transferValue = any[]
+export type editroValue = string
 
 export interface EventCallbackValue {
   value: any

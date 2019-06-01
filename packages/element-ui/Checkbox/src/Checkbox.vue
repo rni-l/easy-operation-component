@@ -12,7 +12,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { CommonData, checkboxValue, EventCallbackValue, ReturnCommonData } from '../../../../types/common'
 import { EasyCheckboxOptions } from '../../../../types/form'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

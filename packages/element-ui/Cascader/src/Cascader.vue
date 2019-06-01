@@ -9,7 +9,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { CommonData, ReturnCommonData, cascaderValue, EventCallbackValue } from '../../../../types/common'
 import { EasyCascaderOptions } from '../../../../types/form'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

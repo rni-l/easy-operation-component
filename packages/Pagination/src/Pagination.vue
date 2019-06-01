@@ -14,7 +14,7 @@
 
 <script lang='ts'>
 import { Component, Mixins, Prop, Emit, Watch } from 'vue-property-decorator'
-import formMixin from '@/mixins/form'
+import formMixin from '../../mixins/form'
 
 @Component({
   components: {}

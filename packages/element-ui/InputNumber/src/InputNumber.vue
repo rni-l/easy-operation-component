@@ -10,7 +10,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { EasyInputNumberOptions } from '../../../../types/form'
 import { inputNumberValue, EventCallbackValue } from '../../../../types/common'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

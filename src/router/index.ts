@@ -34,6 +34,12 @@ export default new Router({
       name: 'combination',
       meta: { title: 'combination' },
       component: () => import('../views/Combination.vue')
+    },
+    {
+      path: '/editor',
+      name: 'editor',
+      meta: { title: 'editor' },
+      component: () => import('../views/Editor.vue')
     }
   ]
 })

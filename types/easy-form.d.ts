@@ -20,7 +20,7 @@ export interface EasyFormItem {
   defaultValue?: any
   prop: string
   label?: string
-  type: string // 组件类型
+  type?: string // 组件类型
   required?: boolean
   error?: string
   showMessage?: boolean
@@ -29,6 +29,7 @@ export interface EasyFormItem {
   rules?: EasyFromItemRules[]
   data?: any,
   options?: EasyFormItemComponentOptions
+  slot?: boolean
 }
 
 export interface EasyFormItemComponentOptions {

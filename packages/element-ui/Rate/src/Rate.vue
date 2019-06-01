@@ -8,7 +8,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { EasyRateOptions } from '../../../../types/form'
 import { rateValue, EventCallbackValue } from '../../../../types/common'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

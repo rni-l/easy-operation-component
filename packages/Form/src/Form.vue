@@ -25,7 +25,9 @@
       :inlineMessage="item.inlineMessage || false"
       :size="item.size || ''"
     >
-      <component :is='getComponentByType(item)'
+      <component
+        v-if="!item.slot"
+        :is='getComponentByType(item)'
         :ref="item.prop"
         :options='item.options || {}'
         :data='item.data'
@@ -33,6 +35,8 @@
         @input='handleInput'
         @change="handleChange"
       />
+
+      <slot :name="item.prop" :data="item" v-if="item.slot"></slot>
 
       <template slot='label' slot-scope='error'>
         <slot name='label' :error='error' />
@@ -53,8 +57,8 @@
 import { Component, Mixins, Prop, Watch, Emit } from 'vue-property-decorator'
 import { EasyFormValue, EasyFormItem, EasyFormRules } from '../../../types/easy-form'
 import { EasyFormOptions } from '../../../types/form'
-import formMixin from '@/mixins/form'
-import addComponentsMixin from '@/mixins/addComponents'
+import formMixin from '../../mixins/form'
+import addComponentsMixin from '../../mixins/addComponents'
 import { merge } from '@packages/utils'
 
 interface eventCallbackParams {
@@ -172,13 +176,13 @@ export default class Com extends Mixins(addComponentsMixin, formMixin) {
 
   setValueByProp(value: eventCallbackParams['value'], prop: eventCallbackParams['prop']) {
     this.$set(this.data, prop, value)
+    console.log(this.data)
   }
 
   /**
    * 通过这两个事件订阅，去改变数据
    */
   handleFormComponentChange({ value, prop }: eventCallbackParams) {
-    console.log(value, prop)
     const isDiff = this.checkDiffByProp({ value, prop })
     if (!isDiff) return
     // 当两个值不一样时，触发 change 事件

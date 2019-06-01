@@ -31,7 +31,7 @@ import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { EasyDateOptions } from '../../../../types/form'
 import { dateComponentValue, EventCallbackValue } from '../../../../types/common'
 import { componentConfig } from '@/config/common'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

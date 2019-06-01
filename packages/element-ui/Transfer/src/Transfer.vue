@@ -18,7 +18,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { EasyTransferOptions } from '../../../../types/form'
 import { transferValue, CommonData, EventCallbackValue } from '../../../../types/common'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

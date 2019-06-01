@@ -26,7 +26,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { EasyInputOptions } from '../../../../types/form'
 import { inputValue, EventCallbackValue } from '../../../../types/common'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

@@ -15,10 +15,19 @@ import elementUi from 'element-ui'
 import { setStaticConfig } from '@/config'
 import initAuth from './router/auth'
 
-const oPrivate = require('../private-config.js')
+// const oPrivate = require('../private-config.js')
 const isPro = process.env.NODE_ENV === 'production'
 
-setStaticConfig(oPrivate)
+setStaticConfig({
+  dev: {
+    port: 1234, // 开发模式端口号
+    target: 'http://localhost:9098', // 开发模式 api 转发地址
+    notValidated: true
+  },
+  publicPath: '', // api 前缀
+  showConsoleLog: false, // 是否显示前端日志
+  productionSourceMap: false // 上线版本是否启用 sourcemap
+})
 
 Vue.config.productionTip = isPro
 Vue.prototype.$observer = Eventbus

@@ -74,7 +74,7 @@
 <script lang='ts'>
 import { Component, Vue, Prop, Emit, Mixins } from 'vue-property-decorator'
 import { EasyTableOptions } from '../../../types/form'
-import formMixin from '@/mixins/form'
+import formMixin from '../../mixins/form'
 import { tableConfig } from '@/config/common'
 import { merge } from '@packages/utils'
 

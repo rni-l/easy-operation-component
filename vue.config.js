@@ -21,7 +21,7 @@ module.exports = {
     ? {
       port: CONFIG.dev.port,
       proxy: {
-        '/': {
+        '/api': {
           target: CONFIG.dev.target,
           // ws: true,
           changeOrigin: true

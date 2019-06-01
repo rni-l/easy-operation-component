@@ -15,6 +15,9 @@ declare module '*.jpg' {
 
 declare module 'easy-validate-form'
 
+declare module 'vue-quill-editor'
+declare module 'quill'
+
 declare namespace utils {
   interface requestHanldeType {
     errType: String

@@ -12,7 +12,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { CommonData, ReturnCommonData, radioValue, EventCallbackValue } from '../../../../types/common'
 import { EasyRadioOptions } from '../../../../types/form'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 
 @Component({
   components: {}

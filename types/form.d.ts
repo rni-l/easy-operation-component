@@ -1,6 +1,7 @@
-import { checkboxValue, dateComponentValue, cascaderValue, radioValue, selectValue, inputNumberValue, inputValue, switchValue, sliderValue, rateValue, colorPickerValue, transferValue } from './common'
+import { checkboxValue, dateComponentValue, cascaderValue, radioValue, selectValue, inputNumberValue, inputValue, switchValue, sliderValue, rateValue, colorPickerValue, transferValue, editroValue } from './common'
 import { EasyFormValue, EasyFormItem } from './easy-form'
 import { EasyTableItem, EasyTableAttrOptions } from './easy-table'
+import { HandleUpload } from './easy-editor'
 
 export interface EasyInputOptions {
   defaultValue?: inputValue
@@ -72,6 +73,11 @@ export interface EasyTransferOptions {
   handleRightCheckChange?: Function
 }
 
+export interface EasyUpload {
+  defaultValue?: transferValue
+  handleChange?: Function
+}
+
 export interface EasyFormOptions {
   inline?: boolean
   labelPosition?: string
@@ -95,4 +101,11 @@ export interface EasyTableOptions {
   columns?: EasyTableItem[]
   isShowAddBtn?: boolean
   isShowRefreshBtn?: boolean
+}
+
+export interface EasyEditorOptions {
+  [key: string]: any
+  editorOption: any
+  defaultValue?: editroValue,
+  handleUpload?: HandleUpload
 }

@@ -11,6 +11,7 @@ import USlider from '@packages/element-ui/Slider'
 import URate from '@packages/element-ui/Rate'
 import UColorPicker from '@packages/element-ui/ColorPicker'
 import UTransfer from '@packages/element-ui/Transfer'
+import UEditor from '@packages/Editor'
 import { ComponentsMap } from '../../types/common'
 
 @Component({
@@ -26,7 +27,8 @@ import { ComponentsMap } from '../../types/common'
     USlider,
     URate,
     UColorPicker,
-    UTransfer
+    UTransfer,
+    UEditor
   }
 })
 export default class From extends Vue {
@@ -42,6 +44,7 @@ export default class From extends Vue {
     select: USelect,
     switch: USwitch,
     slider: USlider,
-    transfer: UTransfer
+    transfer: UTransfer,
+    editor: UEditor
   }
 }

@@ -8,7 +8,7 @@
 import { Component, Mixins, Prop, Emit } from 'vue-property-decorator'
 import { EasySwitchOptions } from '../../../../types/form'
 import { switchValue, EventCallbackValue } from '../../../../types/common'
-import formMixin from '@/mixins/form'
+import formMixin from '../../../mixins/form'
 // import ValidateForm from 'easy-validate-form'
 
 @Component({
