@@ -32,7 +32,7 @@
     "easy-validate-form": "^0.0.6",
     "element-ui": "^2.5.4",
     "moment": "^2.24.0",
-    "vant": "^1.6.7",
+    "vant": "^2.1.8",
     "vue": "^2.6.6",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
