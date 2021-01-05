@@ -27,7 +27,7 @@
     }
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "easy-eventbus": "^0.2.9",
     "easy-validate-form": "^0.0.6",
     "element-ui": "^2.5.4",
